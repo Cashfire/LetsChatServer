@@ -7,6 +7,7 @@
 package com.LetsChat.server.model;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class ManageClientThread {
 
@@ -18,5 +19,14 @@ public class ManageClientThread {
 	}
 	public static SerConClientThread getClientThread(String uId){
 		return (SerConClientThread) hm.get(uId);
+	}
+	
+	public static String getAllOnlineFriend(){
+		Iterator it = hm.keySet().iterator();
+		String res = "";
+		while(it.hasNext()){
+			res += it.next().toString()+" ";
+		}
+		return res;
 	}
 }

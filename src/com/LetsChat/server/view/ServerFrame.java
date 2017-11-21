@@ -27,6 +27,7 @@ public class ServerFrame extends JFrame implements ActionListener{
 		jb1 = new JButton("Start");
 		jb1.addActionListener(this);
 		jb2 = new JButton("Close");
+		jb2.addActionListener(this);
 		jp.add(jb1);
 		jp.add(jb2);
 		
@@ -41,6 +42,9 @@ public class ServerFrame extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		if(evt.getSource()==jb1){
 			new LetsChatServer();
+		}
+		if(evt.getSource()==jb2){
+			//close
 		}
 	}
 

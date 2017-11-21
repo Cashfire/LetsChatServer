@@ -19,10 +19,11 @@ public class LetsChatServer {
 	}
 
 	public LetsChatServer(){
+		ServerSocket ss = null;
 		try {
 			//listen at port 9999
 			System.out.println("I'm server, waiting at 9999...");
-			ServerSocket ss = new ServerSocket(9999);
+			ss = new ServerSocket(9999);
 			//Keep listening
 			while(true){
 				//waiting for the connection
@@ -52,6 +53,9 @@ public class LetsChatServer {
 					ManageClientThread.addClientThread(u.getUserId(), scct);
 					scct.start(); //call the run() method of this thread scct.
  
+					//inform other online friends that Im just online
+					scct.notifyOthers(u.getUserId());
+					
 				}else{
 					//"2" means the pwd is incorrect
 					m.setMsgType("2");
@@ -68,6 +72,13 @@ public class LetsChatServer {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				ss.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }
